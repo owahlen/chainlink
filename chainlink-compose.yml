@@ -1,0 +1,30 @@
+version: "3.7"
+
+# adminer is reachable under http://localhost:8090
+# Login with:
+# Database System: PostgreSQL
+# Server: db
+# User: postgres
+# Password: example
+# Database: test
+
+services:
+  chainlink:
+    image: smartcontract/chainlink:1.0.1
+    restart: always
+    networks:
+      - chainlink
+    ports:
+      - 6688:6688
+    volumes:
+      - type: bind
+        source: "./chainlink-volume"
+        target: "/chainlink"
+    env_file:
+      - chainlink-volume/.env
+    command: local n -p /chainlink/.password -a /chainlink/.api
+
+networks:
+  chainlink:
+    external: true
+    name: chainlink

@@ -1,0 +1,38 @@
+version: "3.7"
+
+# Create a postgres database with adminer as admin GUI:
+# adminer is reachable under http://localhost:8090
+# Database credentials are:
+# Database System: PostgreSQL
+# Server: db
+# User: postgres
+# Password: password
+# Database: chainlink
+# Note that a docker network called "chainlink" is created, too.
+# Also note that the database does not support SSL
+# and that the string "?sslmode=disable" should be added to the DB connection URI
+
+services:
+  db:
+    image: postgres
+    restart: always
+    networks:
+      - chainlink
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: chainlink
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - chainlink
+    ports:
+      - 8090:8080
+
+networks:
+  chainlink:
+    name: "chainlink"
