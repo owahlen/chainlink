@@ -1,6 +1,8 @@
 # Start Chainlink node for development
 This repository contains [docker-compose](https://docs.docker.com/compose) scripts
 to facilitate the creation of a [Chainlink](https://github.com/smartcontractkit/chainlink) node.
+Further details on the installation procedure are covered by the
+[chainlink documentation](https://docs.chain.link/docs/running-a-chainlink-node). 
 
 ## Configuration
 
